@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  race_tickets_web:
+    build: .
+    volumes:
+      - ./index.php:/var/www/html/index.php
+    depends_on:
+      - race_tickets_db
+    ports:
+      - "80:80"
+
+  race_tickets_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: race_condition_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 5QSDdSwCp&@Bd3
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
