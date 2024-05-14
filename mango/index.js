@@ -9,10 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
-mongoose.connect('mongodb://mango_db:27017/ctfDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ctfDB';
+mongoose.connect(mongoURI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
